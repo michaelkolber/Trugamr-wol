@@ -6,14 +6,14 @@ COPY go.mod go.sum ./
 RUN go mod download
 
 COPY . .
-RUN go build -o wol
+RUN go build -o woa
 
 #------------------#
 
 FROM gcr.io/distroless/static-debian12 AS release
 
-COPY --from=builder /app/wol /usr/local/bin/wol
+COPY --from=builder /app/woa /usr/local/bin/woa
 
 USER nonroot:nonroot
 
-ENTRYPOINT ["/usr/local/bin/wol"]
+ENTRYPOINT ["/usr/local/bin/woa"]

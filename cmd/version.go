@@ -20,9 +20,9 @@ func init() {
 var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "Print version information",
-	Long:  "Print detailed version information about the wol CLI",
+	Long:  "Print detailed version information about the woa CLI",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Printf("wol %s\n", version)
+		fmt.Printf("woa %s\n", version)
 		fmt.Printf("  commit: %s\n", commit)
 		fmt.Printf("  built:  %s\n", date)
 	},

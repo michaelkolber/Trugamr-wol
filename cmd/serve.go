@@ -13,8 +13,8 @@ import (
 
 	probing "github.com/prometheus-community/pro-bing"
 	"github.com/spf13/cobra"
-	"github.com/trugamr/wol/config"
-	"github.com/trugamr/wol/magicpacket"
+	"github.com/michaelkolber/woa/config"
+	"github.com/michaelkolber/woa/magicpacket"
 )
 
 //go:embed templates/*

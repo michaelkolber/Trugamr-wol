@@ -88,11 +88,11 @@ func NewConfig() *Config {
 // Configuration is loaded in the following order (later values override earlier ones):
 // 1. Default values
 // 2. Config files from:
-//   - /etc/wol/config.yaml
-//   - ~/.wol/config.yaml
+//   - /etc/woa/config.yaml
+//   - ~/.woa/config.yaml
 //   - ./config.yaml
 //
-// 3. Environment variable `WOL_CONFIG` containing full YAML config
+// 3. Environment variable `WOA_CONFIG` containing full YAML config
 func (c *Config) Load() error {
 	// Load defaults first
 	defaults := &Config{
@@ -115,8 +115,8 @@ func (c *Config) Load() error {
 
 	// Order here matters as later values will override earlier ones
 	paths := []string{
-		filepath.Join("/etc", "wol", configFilename),
-		filepath.Join(home, ".wol", configFilename),
+		filepath.Join("/etc", "woa", configFilename),
+		filepath.Join(home, ".woa", configFilename),
 		filepath.Join(".", configFilename),
 	}
 
@@ -129,11 +129,11 @@ func (c *Config) Load() error {
 		}
 	}
 
-	// Load from `WOL_CONFIG` environment variable if set
-	ec := []byte(os.Getenv("WOL_CONFIG"))
+	// Load from `WOA_CONFIG` environment variable if set
+	ec := []byte(os.Getenv("WOA_CONFIG"))
 	err = k.Load(rawbytes.Provider(ec), yaml.Parser())
 	if err != nil {
-		return fmt.Errorf("failed to load config from WOL_CONFIG: %w", err)
+		return fmt.Errorf("failed to load config from WOA_CONFIG: %w", err)
 	}
 
 	err = k.Unmarshal("", c)

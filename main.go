@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/trugamr/wol/cmd"
+	"github.com/michaelkolber/woa/cmd"
 )
 
 func main() {

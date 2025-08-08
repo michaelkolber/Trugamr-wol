@@ -1,4 +1,4 @@
-module github.com/trugamr/wol
+module github.com/michaelkolber/woa
 
 go 1.22.3
 

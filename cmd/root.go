@@ -3,14 +3,14 @@ package cmd
 import (
 	"os"
 
+	"github.com/michaelkolber/woa/config"
 	"github.com/spf13/cobra"
-	"github.com/trugamr/wol/config"
 )
 
 var cfg = config.NewConfig()
 
 var rootCmd = &cobra.Command{
-	Use:   "wol",
+	Use:   "woa",
 	Short: "Discover and wake up devices on the network",
 	Long:  "Discover devices on the network and wake them by sending magic Wake-On-LAN packets",
 	PersistentPreRunE: func(cmd *cobra.Command, args []string) error {

@@ -1,4 +1,4 @@
-# wol 🦭
+# woa 🦭
 
 A CLI tool to send Wake-On-LAN (WOL) magic packets to wake up devices on your
 network. Features both CLI commands and a web interface.
@@ -18,7 +18,7 @@ network. Features both CLI commands and a web interface.
 ### Pre-built binaries
 
 Download the latest release for your platform from the
-[releases page](https://github.com/trugamr/wol/releases).
+[releases page](https://github.com/michaelkolber/woa/releases).
 
 Available for:
 
@@ -29,13 +29,13 @@ Available for:
 ### Using Go
 
 ```sh
-go install github.com/trugamr/wol@latest
+go install github.com/michaelkolber/woa@latest
 ```
 
 ### Using Docker
 
 ```sh
-docker run --network host -v $(pwd)/config.yaml:/etc/wol/config.yaml ghcr.io/trugamr/wol:latest
+docker run --network host -v $(pwd)/config.yaml:/etc/woa/config.yaml ghcr.io/michaelkolber/woa:latest
 ```
 
 Or using docker-compose:
@@ -43,21 +43,21 @@ Or using docker-compose:
 ```yaml
 # Method 1: Using bind mount
 services:
-  wol:
-    image: ghcr.io/trugamr/wol:latest
+  woa:
+    image: ghcr.io/michaelkolber/woa:latest
     command: serve # To start the web interface
     network_mode: "host"
     volumes:
-      - ./config.yaml:/etc/wol/config.yaml
+      - ./config.yaml:/etc/woa/config.yaml
 
 # Method 2: Using environment variables
 services:
-  wol:
-    image: ghcr.io/trugamr/wol:latest
+  woa:
+    image: ghcr.io/michaelkolber/woa:latest
     command: serve # To start the web interface
     network_mode: "host"
     environment:
-      WOL_CONFIG: |
+      WOA_CONFIG: |
         machines:
           - name: desktop
             mac: "00:11:22:33:44:55"
@@ -71,11 +71,11 @@ services:
           privileged: false # Optional, set to true to use privileged ping
 ```
 
-Check out `examples/reverse-proxy.yml` for an example of running wol behind
+Check out `examples/reverse-proxy.yml` for an example of running woa behind
 reverse proxy with basic auth, https etc.
 
 > [!NOTE]
-> The config file should be mounted to `/etc/wol/config.yaml` inside the
+> The config file should be mounted to `/etc/woa/config.yaml` inside the
 > container. Host networking is recommended for Wake-on-LAN packets to work
 > properly on your local network.
 
@@ -84,13 +84,13 @@ reverse proxy with basic auth, https etc.
 Create a `config.yaml` file in one of these locations (in order of precedence):
 
 - `./config.yaml` (current directory)
-- `~/.wol/config.yaml` (home directory)
-- `/etc/wol/config.yaml` (system-wide)
+- `~/.woa/config.yaml` (home directory)
+- `/etc/woa/config.yaml` (system-wide)
 
-Alternatively, you can provide the configuration via the `WOL_CONFIG` environment variable:
+Alternatively, you can provide the configuration via the `WOA_CONFIG` environment variable:
 
 ```sh
-export WOL_CONFIG='
+export WOA_CONFIG='
 machines:
   - name: desktop
     mac: "00:11:22:33:44:55"
@@ -128,19 +128,19 @@ ping:
 
 ```sh
 # List all configured machines
-wol list
+woa list
 
 # Wake up a machine by name
-wol send --name desktop
+woa send --name desktop
 
 # Wake up a machine by MAC address
-wol send --mac "00:11:22:33:44:55"
+woa send --mac "00:11:22:33:44:55"
 
 # Start the web interface
-wol serve
+woa serve
 
 # Show version information
-wol version
+woa version
 ```
 
 ### Web Interface
@@ -158,14 +158,14 @@ command. It provides:
 
 ```sh
 # Clone the repository
-git clone https://github.com/trugamr/wol.git
-cd wol
+git clone https://github.com/michaelkolber/woa.git
+cd woa
 
 # Build
 go build
 
 # Run
-./wol
+./woa
 ```
 
 ## Known Issues
@@ -184,7 +184,7 @@ To make this change persistent, add it to your `/etc/sysctl.conf` file.
 
 You can also try experimenting with setting `ping.privileged: true` in your configuration as an alternative solution.
 
-For more details, see [issue #12](https://github.com/Trugamr/wol/issues/12).
+For more details, see [issue #12](https://github.com/michaelkolber/woa/issues/12).
 
 ## License
 
